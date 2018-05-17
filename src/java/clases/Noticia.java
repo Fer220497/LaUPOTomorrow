@@ -6,30 +6,24 @@
 package clases;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -41,7 +35,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Noticia.findAll", query = "SELECT n FROM Noticia n")
     , @NamedQuery(name = "Noticia.findByIdNoticia", query = "SELECT n FROM Noticia n WHERE n.idNoticia = :idNoticia")
-    , @NamedQuery(name = "Noticia.findByFechaNoticia", query = "SELECT n FROM Noticia n WHERE n.fechaNoticia = :fechaNoticia")})
+    , @NamedQuery(name = "Noticia.findByFechaNoticia", query = "SELECT n FROM Noticia n WHERE n.fechaNoticia = :fechaNoticia")
+    , @NamedQuery(name = "Noticia.findByLocalizacion", query = "SELECT n FROM Noticia n WHERE n.localizacion = :localizacion")
+    , @NamedQuery(name = "Noticia.findByImagen", query = "SELECT n FROM Noticia n WHERE n.imagen = :imagen")})
 public class Noticia implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -73,15 +69,16 @@ public class Noticia implements Serializable {
     @Column(name = "fecha_noticia")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaNoticia;
-    @JoinTable(name = "rel_tag_noticia", joinColumns = {
-        @JoinColumn(name = "id_noticia", referencedColumnName = "id_noticia")}, inverseJoinColumns = {
-        @JoinColumn(name = "nombre_tag", referencedColumnName = "nombre_Tag")})
-    @ManyToMany
-    private Collection<Tag> tagCollection;
-    @ManyToMany(mappedBy = "noticiaCollection")
-    private Collection<Historia> historiaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNoticia")
-    private Collection<Comentario> comentarioCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "localizacion")
+    private String localizacion;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
+    @Column(name = "imagen")
+    private String imagen;
     @JoinColumn(name = "nombre_categoria", referencedColumnName = "nombre_categoria")
     @ManyToOne
     private Categoria nombreCategoria;
@@ -96,12 +93,14 @@ public class Noticia implements Serializable {
         this.idNoticia = idNoticia;
     }
 
-    public Noticia(Integer idNoticia, String tituloNoticia, String subtituloNoticia, String cuerpoNoticia, Date fechaNoticia) {
+    public Noticia(Integer idNoticia, String tituloNoticia, String subtituloNoticia, String cuerpoNoticia, Date fechaNoticia, String localizacion, String imagen) {
         this.idNoticia = idNoticia;
         this.tituloNoticia = tituloNoticia;
         this.subtituloNoticia = subtituloNoticia;
         this.cuerpoNoticia = cuerpoNoticia;
         this.fechaNoticia = fechaNoticia;
+        this.localizacion = localizacion;
+        this.imagen = imagen;
     }
 
     public Integer getIdNoticia() {
@@ -144,31 +143,20 @@ public class Noticia implements Serializable {
         this.fechaNoticia = fechaNoticia;
     }
 
-    @XmlTransient
-    public Collection<Tag> getTagCollection() {
-        return tagCollection;
+    public String getLocalizacion() {
+        return localizacion;
     }
 
-    public void setTagCollection(Collection<Tag> tagCollection) {
-        this.tagCollection = tagCollection;
+    public void setLocalizacion(String localizacion) {
+        this.localizacion = localizacion;
     }
 
-    @XmlTransient
-    public Collection<Historia> getHistoriaCollection() {
-        return historiaCollection;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setHistoriaCollection(Collection<Historia> historiaCollection) {
-        this.historiaCollection = historiaCollection;
-    }
-
-    @XmlTransient
-    public Collection<Comentario> getComentarioCollection() {
-        return comentarioCollection;
-    }
-
-    public void setComentarioCollection(Collection<Comentario> comentarioCollection) {
-        this.comentarioCollection = comentarioCollection;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public Categoria getNombreCategoria() {
