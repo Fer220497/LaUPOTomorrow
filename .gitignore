@@ -1,1 +1,4 @@
 /build/
+/nbproject/
+/test/
+/build.xml
