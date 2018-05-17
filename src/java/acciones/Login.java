@@ -5,7 +5,7 @@
  */
 package acciones;
 
-import WS.UsuarioRest;
+import WS.UsuarioREST;
 import clases.Usuario;
 import com.opensymphony.xwork2.ActionSupport;
 import javax.ws.rs.core.GenericType;
@@ -25,7 +25,7 @@ public class Login extends ActionSupport {
     
     public String execute() throws Exception {
         boolean error = false;
-        UsuarioRest ur = new UsuarioRest();
+        UsuarioREST ur = new UsuarioREST();
         GenericType<Usuario> gt = new GenericType<Usuario>(){};
         Usuario u = null;
         try{
@@ -33,10 +33,20 @@ public class Login extends ActionSupport {
         }catch(javax.ws.rs.NotFoundException E){
             error = true;
             mensajeError = "No se puede conectar con la DB";
+        }catch(javax.ws.rs.BadRequestException E ){
+            error = true;
+            mensajeError = "No puede dejar los campos en blanco";
         }
+        
+        if(u == null){
+            error = true;
+            mensajeError = "El usuario no existe";
+        }
+        
         if(!error && password.equals(u.getPassword())){
             return SUCCESS;
         }else{
+            mensajeError = "La contraseña no coincide";
             return ERROR;
         }
     }
