@@ -5,7 +5,7 @@
  */
 package acciones;
 
-import WS.UsuarioREST;
+import WS.UsuarioWS;
 import clases.Usuario;
 import com.opensymphony.xwork2.ActionSupport;
 import javax.ws.rs.core.GenericType;
@@ -25,7 +25,7 @@ public class Login extends ActionSupport {
     
     public String execute() throws Exception {
         boolean error = false;
-        UsuarioREST ur = new UsuarioREST();
+        UsuarioWS ur = new UsuarioWS();
         GenericType<Usuario> gt = new GenericType<Usuario>(){};
         Usuario u = null;
         try{

@@ -15,7 +15,7 @@ import javax.ws.rs.core.GenericType;
  * [modelo.usuario]<br>
  * USAGE:
  * <pre>
- *        UsuarioREST client = new UsuarioREST();
+ *        UsuarioWS client = new UsuarioWS();
  *        Object response = client.XXX(...);
  *        // do whatever with response
  *        client.close();
@@ -23,13 +23,13 @@ import javax.ws.rs.core.GenericType;
  *
  * @author Juanma
  */
-public class UsuarioREST {
+public class UsuarioWS {
 
     private WebTarget webTarget;
     private Client client;
     private static final String BASE_URI = "http://localhost:8080/UTWS/webresources";
 
-    public UsuarioREST() {
+    public UsuarioWS() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         webTarget = client.target(BASE_URI).path("modelo.usuario");
     }
