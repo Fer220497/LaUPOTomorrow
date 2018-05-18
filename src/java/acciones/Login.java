@@ -43,12 +43,17 @@ public class Login extends ActionSupport {
             mensajeError = "El usuario no existe";
         }
         
-        if(!error && password.equals(u.getPassword())){
-            return SUCCESS;
-        }else{
-            mensajeError = "La contraseña no coincide";
+        if (error) {
             return ERROR;
+        } else {
+            if (password.equals(u.getPassword())) {
+                return SUCCESS;
+            } else {
+                mensajeError = "La contraseña no coincide";
+                return ERROR;
+            }
         }
+
     }
 
     public String getUsuario() {
