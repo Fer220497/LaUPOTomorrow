@@ -61,7 +61,7 @@
         <div class="row">
               <div class="col-md-8 offset-md-2">
                   <h1 class="text-center">Login</h1>
-                  <s:form action="login">
+                  <s:form action="login" theme="simple">
                        <div class="form-group">
                           <label>Usuario</label>
                           <input type="text" class="form-control" name="usuario" placeholder="Introduce Usuario">
