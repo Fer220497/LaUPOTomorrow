@@ -5,10 +5,9 @@
  */
 package acciones;
 
-import WS.UsuarioWS;
-import clases.Usuario;
 import com.opensymphony.xwork2.ActionSupport;
-import javax.ws.rs.core.GenericType;
+import webservices.FachadaUsuario;
+import wsusuario.Usuario;
 
 /**
  *
@@ -25,20 +24,15 @@ public class Login extends ActionSupport {
     
     public String execute() throws Exception {
         boolean error = false;
-        UsuarioWS ur = new UsuarioWS();
-        GenericType<Usuario> gt = new GenericType<Usuario>(){};
         Usuario u = null;
         try{
-            u = ur.find_XML(gt, usuario);
-        }catch(javax.ws.rs.NotFoundException E){
+            u = FachadaUsuario.readUsuario(usuario);
+        }catch(com.sun.xml.ws.fault.ServerSOAPFaultException E){
             error = true;
             mensajeError = "No se puede conectar con la DB";
-        }catch(javax.ws.rs.BadRequestException E ){
-            error = true;
-            mensajeError = "No puede dejar los campos en blanco";
         }
         
-        if(u == null){
+        if(!error && u == null){
             error = true;
             mensajeError = "El usuario no existe";
         }

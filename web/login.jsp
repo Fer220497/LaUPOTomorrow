@@ -19,6 +19,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheet.css">
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    
 
     <title>UPO Tomorrow</title>
 </head>
@@ -63,10 +64,12 @@
                   <h1 class="text-center">Login</h1>
                   <s:form action="login" theme="simple">
                        <div class="form-group">
+                           <s:fielderror fieldName="usuario" cssClass="alert alert-danger"/>
                           <label>Usuario</label>
                           <input type="text" class="form-control" name="usuario" placeholder="Introduce Usuario">
                       </div>
                       <div class="form-group">
+                          <s:fielderror fieldName="password" cssClass="alert alert-danger"/>
                           <label>Contrase&ntilde;a</label>
                           <input type="password" class="form-control" name="password" placeholder="Introduce Contrase&ntilde;a">
                       </div>
