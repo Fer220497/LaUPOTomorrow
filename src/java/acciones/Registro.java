@@ -5,10 +5,10 @@
  */
 package acciones;
 
-import WS.UsuarioWS;
-import clases.Usuario;
 import com.opensymphony.xwork2.ActionSupport;
 import javax.ws.rs.core.GenericType;
+import webservices.FachadaUsuario;
+import wsusuario.Usuario;
 
 /**
  *
@@ -29,20 +29,20 @@ public class Registro extends ActionSupport {
 
     public String execute() throws Exception {
         boolean error = false;
-        UsuarioWS ur = new UsuarioWS();
-        GenericType<Usuario> gt = new GenericType<Usuario>() {
-        };
-        Usuario u1 = new Usuario(nombre_usuario, password, nombre_real, email, localizacion, "lector");
+        Usuario u1 = new Usuario();
+        u1.setNombreUsuario(nombre_usuario);
+        u1.setPassword(password);
+        u1.setNombreReal(nombre_real);
+        u1.setEmail(email);
+        u1.setLocalizacion(localizacion);
+        u1.setRol("lector");
         Usuario u2 = null;
         //Primero hay que ver si no existe el usuario ya
-        try {
-            u2 = ur.find_XML(gt, nombre_usuario);
-        } catch (javax.ws.rs.NotFoundException E) {
+        try{
+            u2 = FachadaUsuario.readUsuario(nombre_usuario);
+        }catch(com.sun.xml.ws.fault.ServerSOAPFaultException E){
             error = true;
             mensajeError = "No se puede conectar con la DB";
-        } catch (javax.ws.rs.BadRequestException E) {
-            error = true;
-            mensajeError = "Bad Request, contact with webadmin";
         }
 
         if (u2 != null) {
@@ -57,8 +57,8 @@ public class Registro extends ActionSupport {
         } else {
 
             try {
-                ur.create_XML(u1);
-            } catch (javax.ws.rs.NotFoundException E) {
+                FachadaUsuario.addUsuario(u1);
+            } catch (com.sun.xml.ws.fault.ServerSOAPFaultException E) {
                 error = true;
                 mensajeError = "No se puede conectar con la DB";
             } catch (javax.ws.rs.BadRequestException E) {

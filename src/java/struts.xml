@@ -22,6 +22,9 @@
         <action name="irLogin">
             <result name="success">/login.jsp</result>
         </action>
+        <action name="irRegistro">
+            <result name="success">/registro.jsp</result>
+        </action>
         
         <action name="login" class="acciones.Login">
             <result name="input">/login.jsp</result>
@@ -29,6 +32,14 @@
                 <param name="actionName">index</param>
             </result>
             <result name="error">/login.jsp</result>
+        </action>
+        
+        <action name="registro" class="acciones.Registro">
+            <result name="input">/registro.jsp</result>
+            <result name="success" type="chain">
+                <param name="actionName">index</param>
+            </result>
+            <result name="error">/registro.jsp</result>
         </action>
         
     </package>

@@ -65,29 +65,29 @@
                             <div class="form-group">
                                 <s:fielderror fieldName="nombre_usuario" cssClass="alert alert-danger"/>
                                 <label>Usuario</label>
-                                <input type="text" class="form-control" name="nombre_usuario" placeholder="Introduce Usuario">
+                                <s:textfield cssClass="form-control" type="text" name="nombre_usuario"/>
                             </div>
                             <div class="form-group">
                                 <s:fielderror fieldName="password" cssClass="alert alert-danger"/>
                                 <label>Contrase&ntilde;a</label>
-                                <input type="password" class="form-control" name="password" placeholder="Introduce Contrase&ntilde;a">
+                                <s:textfield cssClass="form-control" type="password" name="password"/>
                             </div>
                             <div class="form-group">
                                 <s:fielderror fieldName="nombre_real" cssClass="alert alert-danger"/>
                                 <label>Nombre Real</label>
-                                <input type="text" class="form-control" name="nombre_real" placeholder="Introduzca Nombre Real">
+                                <s:textfield cssClass="form-control" type="text" name="nombre_real"/>
                             </div>
                             <div class="form-group">
                                 <s:fielderror fieldName="email" cssClass="alert alert-danger"/>
                                 <label>E-Mail</label>
-                                <input type="text" class="form-control" name="email" placeholder="Introduce E-Mail">
+                                <s:textfield cssClass="form-control" type="email" name="email"/>
                             </div>
                             <div class="form-group">
                                 <s:fielderror fieldName="localizacion" cssClass="alert alert-danger"/>
                                 <label>Localización</label>
-                                <input type="text" class="form-control" name="localizacion" placeholder="Introduce Localización">
+                                <s:textfield cssClass="form-control" type="text" name="localizacion"/>
                             </div>
-                            <button type="submit" class="btn btn-primary">Registro</button>
+                            <s:submit cssClass="btn btn-primary" value="Registro"/>
                         </div>
 
                     </s:form>

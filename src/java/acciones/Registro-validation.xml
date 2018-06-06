@@ -1,0 +1,53 @@
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+    <field name="nombre_usuario">
+        <field-validator type="requiredstring">
+            <message>El usuario es obligatorio</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">75</param>
+            <message>El nombre de usuario es demasiado largo</message>
+        </field-validator>
+    </field>
+    <field name="password">
+        <field-validator type="requiredstring">
+            <message>La contraseña es obligatoria</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">75</param>
+            <message>La contraseña es demasiado larga</message>
+        </field-validator>
+    </field>
+    <field name="nombre_real">
+        <field-validator type="requiredstring">
+            <message>El nombre es obligatorio</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">100</param>
+            <message>El nombre es demasiado largo</message>
+        </field-validator>
+    </field>
+    <field name="email">
+        <field-validator type="requiredstring">
+            <message>El email es obligatorio</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">100</param>
+            <message>El email es demasiado largo</message>
+        </field-validator>
+        <field-validator type="email">
+            <message>El email tiene un formato erroneo</message>
+        </field-validator>
+    </field>
+    <field name="localizacion">
+        <field-validator type="requiredstring">
+            <message>La localizacion es obligatoria</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">100</param>
+            <message>La localización es demasiado larga</message>
+        </field-validator>
+    </field>
+</validators>
