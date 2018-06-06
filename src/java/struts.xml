@@ -34,7 +34,7 @@
             <result name="error">/login.jsp</result>
         </action>
         
-        <action name="registro" class="acciones.Registro">
+        <action name="registrar" class="acciones.Registrar">
             <result name="input">/registro.jsp</result>
             <result name="success" type="chain">
                 <param name="actionName">index</param>

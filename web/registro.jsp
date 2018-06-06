@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <h1 class="text-center">Registro</h1>
-                    <s:form action="registro" theme="simple" validate="true">
+                    <s:form action="registrar" theme="simple" validate="true">
                         <div class="form-group">
                             <div class="form-group">
                                 <s:fielderror fieldName="nombre_usuario" cssClass="alert alert-danger"/>

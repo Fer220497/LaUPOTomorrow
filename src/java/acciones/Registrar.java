@@ -13,7 +13,7 @@ import wsusuario.Usuario;
  *
  * @author Juanma
  */
-public class Registro extends ActionSupport {
+public class Registrar extends ActionSupport {
 
     String nombre_usuario;
     String password;
@@ -22,7 +22,7 @@ public class Registro extends ActionSupport {
     String localizacion;
     String mensajeError;
 
-    public Registro() {
+    public Registrar() {
 
     }
 
