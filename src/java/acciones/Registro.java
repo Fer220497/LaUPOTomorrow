@@ -6,7 +6,6 @@
 package acciones;
 
 import com.opensymphony.xwork2.ActionSupport;
-import javax.ws.rs.core.GenericType;
 import webservices.FachadaUsuario;
 import wsusuario.Usuario;
 
@@ -56,15 +55,8 @@ public class Registro extends ActionSupport {
             
         } else {
 
-            try {
-                FachadaUsuario.addUsuario(u1);
-            } catch (com.sun.xml.ws.fault.ServerSOAPFaultException E) {
-                error = true;
-                mensajeError = "No se puede conectar con la DB";
-            } catch (javax.ws.rs.BadRequestException E) {
-                error = true;
-                mensajeError = "No puede dejar los campos en blanco";
-            }
+            FachadaUsuario.addUsuario(u1);
+
             
             if(!error){
                 return SUCCESS;
