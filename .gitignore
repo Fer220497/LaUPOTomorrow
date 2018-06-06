@@ -1,4 +1,5 @@
-/build/
-/nbproject/
-/test/
-/build.xml
+build
+nbproject
+test
+build.xml
+catalog.xml
