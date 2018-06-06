@@ -1,5 +1,7 @@
-build
-nbproject
-test
+build/
+nbproject/
+test/
+web/META-INF/
+web/WEB-INF/
 build.xml
 catalog.xml
